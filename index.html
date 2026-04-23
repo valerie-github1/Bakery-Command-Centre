@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blessed Bites — Command Centre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════
+   BLESSED BITES — PREMIUM COLOUR SYSTEM
+   
+   Base: Mahogany / Brown sidebar (v2 style)
+   Accent palette: Pink + Green + Cream + Beige
+   
+   --mahogany:  #1A150D  Sidebar anchor
+   --earth:     #3D2B1A  Deep brown
+   --coffee:    #5C3D1E  Mid brown
+   --tobacco:   #7A5C3A  Warm tobacco
+   --caramel:   #C49A6C  Gold caramel
+   --sand:      #E2C9A8  Warm sand
+   --almond:    #F0E4D4  Light almond
+   --cream:     #FAF5EE  Porcelain cream
+   --blush:     #F2C4CE  Rose blush
+   --petal:     #E8A0B0  Dusty pink
+   --rose:      #D4748A  Deep rose
+   --sage:      #8CA888  Sage green
+   --forest:    #3D5A38  Forest green
+   --matcha:    #A8C090  Matcha
+   --mint:      #D4E8D0  Soft mint
+═══════════════════════════════════════ */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --mahogany:#1A150D;
+  --earth:#3D2B1A;
+  --coffee:#5C3D1E;
+  --tobacco:#8B6444;
+  --caramel:#C49A6C;
+  --sand:#E2C9A8;
+  --almond:#F0E4D4;
+  --cream:#FAF5EE;
+  --blush:#F2C4CE;
+  --petal:#E8A0B0;
+  --rose:#C4687E;
+  --deeprose:#9B4A62;
+  --sage:#8CA888;
+  --forest:#3D5A38;
+  --matcha:#A8C090;
+  --mint:#D4E8D0;
+  --white:#FFFFFF;
+  --red-alert:#9B3A2E;
+  --red-lt:#F5ECEA;
+  --amber:#9A6020;
+  --amber-lt:#F5EDD8;
+  --sidebar-w:232px;
+}
+html,body{height:100%;overflow:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',sans-serif;background:var(--mahogany);color:var(--coffee)}
+
+/* ── SHELL ── */
+.shell{display:flex;height:100vh;overflow:hidden}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:var(--sidebar-w);min-width:var(--sidebar-w);
+  background:linear-gradient(180deg,var(--mahogany) 0%,var(--earth) 100%);
+  display:flex;flex-direction:column;overflow:hidden;
+  border-right:1px solid rgba(255,255,255,.05);position:relative;
+}
+.sidebar::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 20% 20%,rgba(196,154,108,.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+
+/* LOGO */
+.sb-logo{padding:20px 18px 16px;border-bottom:1px solid rgba(255,255,255,.06);position:relative;z-index:1}
+.logo-wrap{display:flex;align-items:center;gap:10px}
+.logo-icon{
+  width:38px;height:38px;
+  background:linear-gradient(135deg,var(--petal),var(--blush));
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:20px;box-shadow:0 2px 12px rgba(232,160,176,.3);flex-shrink:0;
+}
+.logo-txt{display:flex;flex-direction:column;line-height:1.1}
+.logo-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--cream);letter-spacing:.02em}
+.logo-sub{font-size:8.5px;text-transform:uppercase;letter-spacing:.16em;color:rgba(226,201,168,.35);margin-top:2px;font-weight:600}
+
+/* PIXIE MINI CARD IN SIDEBAR */
+.pixie-mini{
+  margin:12px 14px 4px;
+  background:rgba(196,154,108,.1);
+  border:1px solid rgba(196,154,108,.2);
+  border-radius:10px;padding:8px 11px;
+  display:flex;align-items:center;gap:8px;
+  position:relative;z-index:1;cursor:pointer;
+  transition:.2s;
+}
+.pixie-mini:hover{background:rgba(196,154,108,.16)}
+.pixie-mini-av{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--forest),var(--matcha));
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;
+  border:1.5px solid rgba(168,192,144,.3);
+}
+.pixie-mini-txt{font-size:10px;color:var(--matcha);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.pixie-mini-st{font-size:9px;color:rgba(226,201,168,.4);display:flex;align-items:center;gap:4px}
+.pxdot{width:5px;height:5px;border-radius:50%;background:#4ade80;animation:pxblink 2s infinite}
+@keyframes pxblink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* NAV */
+.nav-sec{font-size:8.5px;text-transform:uppercase;letter-spacing:.18em;color:rgba(226,201,168,.22);padding:13px 18px 5px;font-weight:700;position:relative;z-index:1}
+.nav-item{
+  display:flex;align-items:center;gap:9px;
+  padding:8px 18px;cursor:pointer;border:none;background:none;
+  width:100%;text-align:left;
+  font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:400;
+  color:rgba(240,228,212,.42);
+  transition:all .18s;position:relative;z-index:1;letter-spacing:.01em;
+}
+.nav-item:hover{color:rgba(240,228,212,.78);background:rgba(255,255,255,.04)}
+.nav-item.active{color:var(--cream);background:rgba(196,154,108,.14);font-weight:500}
+.nav-item.active::before{content:'';position:absolute;left:0;top:5px;bottom:5px;width:3px;background:var(--petal);border-radius:0 3px 3px 0}
+.nav-ico{font-size:13px;width:17px;text-align:center;flex-shrink:0}
+.nav-badge{margin-left:auto;background:rgba(155,58,46,.8);color:#fff;font-size:9px;padding:1px 7px;border-radius:20px;font-weight:700}
+.nav-badge-p{background:rgba(232,160,176,.2);color:var(--petal)}
+
+/* SIDEBAR BOTTOM */
+.sb-btm{margin-top:auto;padding:12px 14px;border-top:1px solid rgba(255,255,255,.05);position:relative;z-index:1}
+.user-chip{display:flex;align-items:center;gap:8px;cursor:pointer;padding:6px 8px;border-radius:8px;transition:.18s}
+.user-chip:hover{background:rgba(255,255,255,.05)}
+.user-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--petal),var(--rose));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0}
+.user-name{font-size:11.5px;color:rgba(240,228,212,.6);font-weight:500}
+.user-role{font-size:9px;color:rgba(196,154,108,.35)}
+
+/* ── MAIN ── */
+.main{flex:1;background:var(--cream);overflow-y:auto;display:flex;flex-direction:column;position:relative}
+
+/* TOPBAR */
+.topbar{
+  background:var(--white);border-bottom:1px solid var(--almond);
+  padding:0 26px;height:54px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;position:sticky;top:0;z-index:10;
+}
+.tb-left{display:flex;flex-direction:column;justify-content:center}
+.tb-eye{font-size:9.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--petal);font-weight:700}
+.tb-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--coffee);line-height:1}
+.tb-right{display:flex;align-items:center;gap:10px}
+.tb-chip{background:var(--almond);border:1px solid var(--sand);border-radius:20px;padding:5px 12px;font-size:11px;color:var(--coffee);font-weight:500;cursor:pointer;transition:.18s}
+.tb-chip:hover{background:var(--sand)}
+.live-chip{background:rgba(61,90,56,.08);border:1px solid rgba(61,90,56,.15);color:var(--forest);display:flex;align-items:center;gap:5px}
+.live-d{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pxblink 2s infinite}
+.tb-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--petal),var(--rose));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;cursor:pointer;border:2px solid var(--almond)}
+
+/* CONTENT */
+.content{padding:22px 26px;flex:1;position:relative}
+.view{display:none;animation:fUp .25s ease}
+.view.active{display:block}
+@keyframes fUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── GRIDS ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:14px}
+
+/* ── STAT CARDS ── */
+.stat{
+  background:var(--white);border:1px solid rgba(61,43,26,.08);
+  border-radius:14px;padding:15px 17px;
+  box-shadow:0 1px 6px rgba(61,43,26,.06);
+  position:relative;overflow:hidden;transition:.2s;
+}
+.stat:hover{transform:translateY(-2px);box-shadow:0 4px 18px rgba(61,43,26,.1)}
+.stat::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0;background:linear-gradient(90deg,var(--petal),var(--rose))}
+.stat.green::after{background:linear-gradient(90deg,var(--sage),var(--matcha))}
+.stat.amber::after{background:linear-gradient(90deg,var(--caramel),var(--sand))}
+.stat.coffee::after{background:linear-gradient(90deg,var(--earth),var(--coffee))}
+.stat-label{font-size:9.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--tobacco);margin-bottom:7px;font-weight:700}
+.stat-val{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--coffee);line-height:1;letter-spacing:-.01em}
+.stat-val.g{color:var(--forest)}
+.stat-val.r{color:var(--red-alert)}
+.stat-val.p{color:var(--rose)}
+.stat-trend{font-size:11px;margin-top:5px;color:var(--tobacco);display:flex;align-items:center;gap:3px}
+.stat-trend.up{color:var(--forest)}
+.stat-trend.dn{color:var(--red-alert)}
+
+/* ── CARDS ── */
+.card{background:var(--white);border:1px solid rgba(61,43,26,.08);border-radius:14px;padding:16px;box-shadow:0 1px 6px rgba(61,43,26,.05)}
+.card-mah{background:var(--mahogany);border-radius:14px;padding:16px;color:var(--cream)}
+.card-earth{background:var(--earth);border-radius:14px;padding:16px;color:var(--cream)}
+.card-blush{background:linear-gradient(135deg,var(--blush),var(--almond));border-radius:14px;padding:16px}
+.card-forest{background:linear-gradient(135deg,var(--earth),var(--forest));border-radius:14px;padding:16px;color:var(--cream)}
+.ct{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--coffee);margin-bottom:11px;letter-spacing:.01em}
+.ct-sm{font-size:12px;font-weight:600;color:var(--coffee);margin-bottom:7px;letter-spacing:.02em}
+
+/* ── AI SAGE BOX ── */
+.sage-box{
+  background:linear-gradient(135deg,var(--earth) 0%,#4A2C10 100%);
+  border-radius:13px;padding:15px 17px;margin-bottom:14px;
+  border:1px solid rgba(196,154,108,.18);
+  box-shadow:0 4px 18px rgba(26,21,13,.18);
+  position:relative;overflow:hidden;
+}
+.sage-box::after{content:'🍰';position:absolute;right:-6px;bottom:-8px;font-size:48px;opacity:.08;transform:rotate(-12deg)}
+.sage-hd{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.sage-av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--blush),var(--petal));display:flex;align-items:center;justify-content:center;font-size:11px;border:1.5px solid rgba(232,160,176,.3);flex-shrink:0}
+.sage-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--petal);font-weight:700}
+.sage-time{font-size:9px;color:rgba(196,154,108,.4);margin-left:auto}
+.sage-txt{font-size:12.5px;color:rgba(245,235,220,.82);line-height:1.75}
+
+/* ── PROGRESS ── */
+.bar-o{background:var(--almond);border-radius:5px;height:7px;overflow:hidden;margin:3px 0 9px}
+.bar-i{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--forest),var(--matcha));transition:width .7s}
+.bar-i.r{background:linear-gradient(90deg,var(--red-alert),#c75a4a)}
+.bar-i.a{background:linear-gradient(90deg,var(--amber),var(--caramel))}
+.bar-i.p{background:linear-gradient(90deg,var(--rose),var(--petal))}
+.bar-i.c{background:linear-gradient(90deg,var(--earth),var(--coffee))}
+
+/* ── PILLS ── */
+.pill{display:inline-flex;align-items:center;background:var(--mint);color:var(--forest);font-size:10px;padding:2px 9px;border-radius:20px;font-weight:600;letter-spacing:.02em}
+.pill.r{background:var(--red-lt);color:var(--red-alert)}
+.pill.a{background:var(--amber-lt);color:var(--amber)}
+.pill.p{background:rgba(242,196,206,.4);color:var(--rose)}
+.pill.n{background:var(--almond);color:var(--coffee)}
+
+/* ── BUTTONS ── */
+.btn{background:var(--earth);color:var(--cream);border:none;border-radius:8px;padding:7px 15px;font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer;font-weight:600;transition:all .18s;letter-spacing:.02em}
+.btn:hover{background:var(--mahogany)}
+.btn-sm{padding:4px 10px;font-size:11px}
+.btn-pink{background:linear-gradient(135deg,var(--rose),var(--petal));color:#fff}
+.btn-pink:hover{background:linear-gradient(135deg,var(--deeprose),var(--rose))}
+.btn-ghost{background:transparent;border:1px solid var(--sand);color:var(--coffee);border-radius:8px;padding:6px 13px;font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer;transition:all .18s}
+.btn-ghost:hover{background:var(--almond)}
+.btn-danger{background:var(--red-alert);color:#fff;border:none;border-radius:8px;padding:4px 10px;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif}
+
+/* ── INPUTS ── */
+.inp{width:100%;border:1px solid var(--sand);border-radius:8px;padding:8px 11px;font-family:'DM Sans',sans-serif;font-size:12.5px;color:var(--coffee);background:var(--almond);margin-bottom:8px;outline:none;transition:border .2s;appearance:none}
+.inp:focus{border-color:var(--caramel);background:var(--white)}
+select.inp{cursor:pointer}
+textarea.inp{resize:vertical;min-height:68px;line-height:1.6}
+
+/* ── TRANSACTIONS ── */
+.tx{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--almond);font-size:12.5px}
+.tx:last-child{border-bottom:none}
+.tx-sub{color:var(--tobacco);font-size:10.5px;margin-top:1px}
+.tx-pos{color:var(--forest);font-weight:700;font-family:'DM Mono',monospace;font-size:12px}
+.tx-neg{color:var(--red-alert);font-weight:700;font-family:'DM Mono',monospace;font-size:12px}
+
+/* ── CHART BARS ── */
+.chart-wrap{display:flex;flex-direction:column;gap:9px}
+.chart-row{display:flex;align-items:center;gap:9px;font-size:11px}
+.chart-lbl{width:88px;color:var(--tobacco);text-align:right;flex-shrink:0;font-weight:500}
+.chart-o{flex:1;background:var(--almond);border-radius:5px;height:19px;overflow:hidden}
+.chart-f{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;font-size:9.5px;font-weight:700;color:rgba(255,255,255,.9)}
+.chart-num{font-family:'DM Mono',monospace;font-size:11px;font-weight:600;color:var(--coffee);width:48px;text-align:right}
+
+/* ── DONUT ── */
+.donut-wrap{display:flex;align-items:center;gap:16px}
+.donut-leg{display:flex;flex-direction:column;gap:7px;flex:1}
+.leg-r{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--coffee)}
+.leg-d{width:9px;height:9px;border-radius:3px;flex-shrink:0}
+
+/* ── KANBAN ── */
+.kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.kol{background:rgba(240,228,212,.5);border:1px solid rgba(61,43,26,.07);border-radius:12px;padding:12px;min-height:280px}
+.kol-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;padding-bottom:8px;border-bottom:1px solid var(--sand)}
+.kol-title{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--coffee)}
+.kol-cnt{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px}
+.task{background:var(--white);border:1px solid rgba(61,43,26,.07);border-radius:9px;padding:10px;margin-bottom:8px;cursor:grab;transition:all .18s;border-left:3px solid transparent;box-shadow:0 1px 4px rgba(61,43,26,.06)}
+.task:hover{box-shadow:0 3px 14px rgba(61,43,26,.1);border-left-color:var(--petal)}
+.task-title{font-size:12.5px;font-weight:500;color:var(--coffee);margin-bottom:5px;line-height:1.35}
+.task-meta{display:flex;gap:5px;flex-wrap:wrap;align-items:center;font-size:10px;color:var(--tobacco)}
+.task-actions{display:flex;gap:4px;margin-top:8px}
+.kbadge{font-size:9px;padding:2px 7px;border-radius:4px;font-weight:700;letter-spacing:.02em}
+.kb-fin{background:var(--mint);color:var(--forest)}
+.kb-ops{background:var(--amber-lt);color:var(--amber)}
+.kb-mkt{background:rgba(242,196,206,.4);color:var(--rose)}
+.kb-blk{background:var(--red-lt);color:var(--red-alert)}
+.blocker-tip{font-size:10.5px;color:var(--red-alert);padding:6px 8px;background:var(--red-lt);border-radius:6px;margin:5px 0;line-height:1.45}
+
+/* ── STANDUP ── */
+.sq{background:rgba(240,228,212,.5);border:1px solid var(--sand);border-radius:10px;padding:13px;margin-bottom:10px;border-left:3px solid var(--petal)}
+.sq.sq4{border-left-color:var(--caramel)}
+.sq label{font-size:12px;font-weight:600;color:var(--coffee);display:block;margin-bottom:7px}
+.sq-num{display:inline-flex;align-items:center;justify-content:center;background:var(--earth);color:var(--cream);width:17px;height:17px;border-radius:50%;font-size:9px;font-weight:700;margin-right:6px}
+.sq-num.q4{background:var(--caramel);color:var(--earth)}
+
+/* ── CALENDAR ── */
+.cal-strip{display:flex;gap:5px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px}
+.cal-day{min-width:42px;height:54px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;border:1px solid var(--sand);background:rgba(240,228,212,.5);transition:all .18s;flex-shrink:0;font-size:11px}
+.cal-day:hover{border-color:var(--petal);background:var(--almond)}
+.cal-day.today{background:linear-gradient(135deg,var(--earth),var(--coffee));color:var(--cream);border-color:var(--earth)}
+.cal-day.has-event::after{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--petal)}
+.cal-day.today.has-event::after{background:var(--blush)}
+.cal-dn{font-size:8.5px;text-transform:uppercase;letter-spacing:.06em;opacity:.6;font-weight:700}
+.cal-dd{font-size:14px;font-weight:700}
+
+/* ── SCORE RING ── */
+.score-ring{width:62px;height:62px;border-radius:50%;background:conic-gradient(var(--petal) var(--pct,0%),var(--almond) 0);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
+.score-ring::before{content:'';position:absolute;width:46px;height:46px;border-radius:50%;background:var(--earth)}
+.score-val{position:relative;font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;color:var(--cream)}
+
+/* ── PHASES ── */
+.phase{background:var(--white);border:1px solid rgba(61,43,26,.08);border-radius:12px;padding:13px;margin-bottom:10px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 1px 5px rgba(61,43,26,.06)}
+.ph-num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;background:var(--coffee);color:var(--cream);font-family:'DM Mono',monospace}
+.ph-num.active{background:linear-gradient(135deg,var(--rose),var(--petal));color:#fff}
+.ph-num.done{background:var(--forest);color:#fff}
+.ph-content h4{font-size:12.5px;font-weight:600;color:var(--coffee);margin-bottom:4px}
+.ph-content p{font-size:11px;color:var(--tobacco);line-height:1.55}
+.ph-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}
+
+/* ── SCHED ── */
+.sched-row{display:flex;align-items:center;gap:11px;padding:7px 0;border-bottom:1px solid var(--almond)}
+.sched-row:last-child{border-bottom:none}
+.sched-time{font-family:'DM Mono',monospace;font-size:11px;color:var(--tobacco);width:44px;flex-shrink:0}
+.sched-bar{flex:1;background:var(--almond);border-radius:6px;height:26px;position:relative;overflow:hidden}
+.sched-ev{position:absolute;top:0;bottom:0;border-radius:6px;display:flex;align-items:center;padding:0 10px;font-size:11px;font-weight:600;white-space:nowrap}
+
+/* ── STYLE GUIDE ── */
+.swatch-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
+.swatch{border-radius:12px;overflow:hidden;box-shadow:0 1px 6px rgba(61,43,26,.08)}
+.swatch-col{height:66px;width:100%}
+.swatch-info{background:var(--white);padding:7px 9px;border-top:1px solid rgba(61,43,26,.07)}
+.swatch-name{font-size:11px;font-weight:600;color:var(--coffee)}
+.swatch-hex{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--tobacco)}
+.font-box{background:var(--white);border:1px solid rgba(61,43,26,.08);border-radius:12px;padding:18px;margin-bottom:11px}
+
+/* ── MISC ── */
+.hidden{display:none!important}
+.row-between{display:flex;justify-content:space-between;align-items:center}
+.divider{border:none;border-top:1px solid var(--almond);margin:11px 0}
+.scrollarea{max-height:220px;overflow-y:auto}
+.tab-tog{display:flex;background:var(--almond);border-radius:8px;padding:3px;margin-bottom:13px;width:fit-content}
+.tab-opt{padding:5px 14px;font-size:11.5px;border-radius:6px;cursor:pointer;border:none;background:none;font-family:'DM Sans',sans-serif;color:var(--tobacco);transition:all .18s;font-weight:500}
+.tab-opt.active{background:var(--white);color:var(--coffee);font-weight:700;box-shadow:0 1px 4px rgba(61,43,26,.1)}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:var(--sand);border-radius:4px}
+
+/* ── MODAL ── */
+.modal-ov{position:fixed;inset:0;background:rgba(26,21,13,.55);z-index:200;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.modal-box{background:var(--white);border-radius:16px;padding:24px;width:400px;max-width:95vw;max-height:85vh;overflow-y:auto;border:1px solid var(--sand);box-shadow:0 8px 32px rgba(26,21,13,.2)}
+.modal-box h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--coffee);margin-bottom:15px}
+.modal-act{display:flex;gap:8px;margin-top:13px;justify-content:flex-end}
+
+/* ═══════════════════════════════════════
+   ✨ PIXIE FAIRY AVATAR — FULL CSS ART
+═══════════════════════════════════════ */
+#pixie-container{
+  position:fixed;
+  bottom:80px;right:22px;
+  z-index:150;
+  cursor:pointer;
+  width:120px;
+  display:flex;flex-direction:column;align-items:center;gap:0;
+}
+.pixie-scene{
+  position:relative;width:100px;height:130px;
+  display:flex;align-items:flex-end;justify-content:center;
+}
+
+/* FLOATING GEMS (morning) */
+.gem{
+  position:absolute;
+  width:12px;height:14px;
+  opacity:0;
+  transition:opacity .5s;
+  filter:drop-shadow(0 0 5px rgba(0,220,150,.7));
+}
+.gem svg{width:100%;height:100%}
+.gem-1{top:8px;left:4px;animation:gemFloat1 3s ease-in-out infinite}
+.gem-2{top:18px;right:2px;animation:gemFloat2 3.5s ease-in-out infinite}
+.gem-3{top:4px;left:50%;transform:translateX(-50%);animation:gemFloat3 2.8s ease-in-out infinite}
+.gem-4{top:28px;left:0px;animation:gemFloat4 4s ease-in-out infinite;width:9px;height:11px}
+.gem-5{top:22px;right:4px;animation:gemFloat5 3.2s ease-in-out infinite;width:8px;height:10px}
+@keyframes gemFloat1{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-7px) rotate(15deg)}}
+@keyframes gemFloat2{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-9px) rotate(-10deg)}}
+@keyframes gemFloat3{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+@keyframes gemFloat4{0%,100%{transform:translateY(0) rotate(5deg)}50%{transform:translateY(-6px) rotate(-8deg)}}
+@keyframes gemFloat5{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-10px) rotate(12deg)}}
+
+/* FAIRY BODY */
+.pixie-fairy{
+  position:relative;
+  width:72px;height:110px;
+  display:flex;flex-direction:column;align-items:center;
+}
+
+/* WINGS */
+.wings{
+  position:absolute;
+  top:18px;left:50%;transform:translateX(-50%);
+  width:88px;height:52px;z-index:0;
+}
+.wing-l,.wing-r{
+  position:absolute;
+  border-radius:50% 50% 50% 10%;
+  background:linear-gradient(135deg,rgba(120,220,160,.55),rgba(180,255,200,.3));
+  border:1.5px solid rgba(120,220,160,.5);
+  backdrop-filter:blur(2px);
+  animation:wingFlap 1.8s ease-in-out infinite;
+  filter:drop-shadow(0 0 6px rgba(80,200,120,.4));
+}
+.wing-l{
+  width:36px;height:44px;
+  top:0;left:0;
+  transform-origin:right center;
+  border-radius:60% 40% 30% 70%;
+}
+.wing-r{
+  width:36px;height:44px;
+  top:0;right:0;
+  transform-origin:left center;
+  border-radius:40% 60% 70% 30%;
+  animation-direction:alternate-reverse;
+}
+.wing-l-sm,.wing-r-sm{
+  position:absolute;
+  border-radius:50%;
+  background:linear-gradient(135deg,rgba(120,220,160,.35),rgba(180,255,200,.2));
+  border:1px solid rgba(120,220,160,.35);
+}
+.wing-l-sm{width:22px;height:28px;top:22px;left:6px;border-radius:60% 40% 30% 70%}
+.wing-r-sm{width:22px;height:28px;top:22px;right:6px;border-radius:40% 60% 70% 30%}
+@keyframes wingFlap{0%,100%{transform:scaleX(1) rotate(-3deg)}50%{transform:scaleX(.72) rotate(5deg)}}
+
+/* HEAD */
+.fairy-head{
+  position:relative;z-index:2;
+  width:34px;height:34px;
+  background:radial-gradient(circle at 40% 35%,#D4906A,#B06A40);
+  border-radius:50%;
+  margin-top:10px;
+  flex-shrink:0;
+  box-shadow:0 3px 10px rgba(0,0,0,.2);
+  border:1.5px solid rgba(180,100,60,.3);
+}
+/* EYES */
+.eye{
+  position:absolute;
+  top:40%;
+  width:10px;height:12px;
+  background:radial-gradient(circle at 40% 30%,#1a1a1a,#000);
+  border-radius:50%;
+  overflow:hidden;
+}
+.eye::before{content:'';position:absolute;width:4px;height:4px;background:#fff;border-radius:50%;top:1px;left:1px;opacity:.9}
+.eye::after{content:'';position:absolute;width:2px;height:2px;background:rgba(255,255,255,.5);border-radius:50%;top:6px;right:1px}
+.eye-l{left:5px}
+.eye-r{right:5px}
+/* EYE LASHES */
+.eye::before{box-shadow:0 0 0 1px rgba(0,0,0,.3)}
+/* BLUSH */
+.cheek{position:absolute;bottom:9px;width:8px;height:5px;background:rgba(240,140,120,.45);border-radius:50%}
+.cheek-l{left:2px}
+.cheek-r{right:2px}
+/* LIPS */
+.lips{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:8px;height:3px;background:#C05050;border-radius:3px}
+/* CROWN / FLOWERS */
+.crown{
+  position:absolute;top:-8px;left:50%;transform:translateX(-50%);
+  display:flex;gap:3px;
+}
+.flower{font-size:8px}
+/* HAIR */
+.hair-top{
+  position:absolute;top:-4px;left:0;right:0;
+  height:20px;
+  background:radial-gradient(circle at 50% 0%,#1A0A00,#2D1200);
+  border-radius:50% 50% 0 0;
+  z-index:-1;
+}
+.hair-side{
+  position:absolute;top:8px;
+  width:6px;height:20px;
+  background:linear-gradient(180deg,#1A0A00,#2D1200);
+  border-radius:3px;
+}
+.hair-side.l{left:-3px}
+.hair-side.r{right:-3px}
+
+/* BODY / DRESS */
+.fairy-body{
+  position:relative;z-index:2;
+  width:28px;height:32px;
+  background:linear-gradient(160deg,rgba(164,192,144,.9),rgba(107,140,82,.85));
+  border-radius:40% 40% 50% 50%;
+  margin-top:2px;
+  flex-shrink:0;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+  border:1px solid rgba(120,180,100,.4);
+}
+.dress-detail{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:36px;height:16px;
+  background:linear-gradient(160deg,rgba(140,168,136,.8),rgba(80,120,70,.7));
+  border-radius:0 0 60% 60%;
+  border:1px solid rgba(120,180,100,.3);
+}
+
+/* ARMS */
+.arm{
+  position:absolute;top:4px;
+  width:6px;height:14px;
+  background:radial-gradient(circle at 40% 30%,#C4804A,#A06030);
+  border-radius:4px;
+}
+.arm.l{left:-4px;transform:rotate(-15deg)}
+.arm.r{right:-4px;transform:rotate(15deg)}
+
+/* LEGS / SKIRT */
+.skirt{
+  position:relative;z-index:2;
+  width:40px;height:20px;
+  background:linear-gradient(160deg,rgba(140,168,136,.7),rgba(80,120,70,.6));
+  border-radius:0 0 50% 50%;
+  margin-top:-4px;
+  border:1px solid rgba(120,180,100,.3);
+}
+
+/* FLOAT ANIMATION */
+.pixie-fairy{animation:pixieFloat 3.5s ease-in-out infinite}
+@keyframes pixieFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* GLIMMER */
+.glimmer{
+  position:absolute;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,200,.9),rgba(255,220,100,.4),transparent);
+  animation:glimmerPop .6s ease-out forwards;
+  pointer-events:none;z-index:20;
+}
+@keyframes glimmerPop{0%{opacity:1;transform:scale(0)}60%{opacity:.8;transform:scale(1)}100%{opacity:0;transform:scale(1.4)}}
+
+/* PIXIE SPEECH BUBBLE — glassmorphism */
+.pixie-bubble{
+  position:absolute;
+  bottom:115px;right:10px;
+  background:rgba(255,255,255,.18);
+  backdrop-filter:blur(16px) saturate(180%);
+  -webkit-backdrop-filter:blur(16px) saturate(180%);
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:18px 18px 4px 18px;
+  padding:10px 13px;
+  max-width:200px;min-width:130px;
+  box-shadow:0 4px 24px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.4);
+  font-size:11.5px;
+  line-height:1.55;
+  color:var(--coffee);
+  font-family:'DM Sans',sans-serif;
+  font-weight:500;
+  display:none;
+  z-index:160;
+  animation:bubblePop .3s ease;
+}
+.pixie-bubble::after{
+  content:'';
+  position:absolute;
+  bottom:-8px;right:18px;
+  border-left:8px solid transparent;
+  border-right:8px solid transparent;
+  border-top:8px solid rgba(255,255,255,.35);
+}
+@keyframes bubblePop{from{opacity:0;transform:scale(.85) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+
+/* SLEEP BUBBLE */
+.sleep-bubble{
+  position:absolute;
+  bottom:118px;right:8px;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(20px) saturate(160%);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:16px;
+  padding:10px 14px;
+  box-shadow:0 4px 24px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.35);
+  display:none;
+  animation:bubblePop .4s ease;
+  z-index:160;
+}
+.zzz-text{font-family:'DM Mono',monospace;font-size:13px;color:var(--tobacco);letter-spacing:.1em}
+.zzz-dots{display:flex;gap:4px;margin-top:4px;justify-content:center}
+.zzz-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.5)}
+
+/* SLEEPING STATE */
+.fairy-sleep .pixie-fairy{animation:sleepFloat 5s ease-in-out infinite}
+@keyframes sleepFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-4px) rotate(2deg)}}
+.fairy-sleep .eye{
+  height:3px;
+  border-radius:0 0 50% 50%;
+  background:none;
+  border-top:2px solid #1a1a1a;
+}
+.fairy-sleep .eye::before,.fairy-sleep .eye::after{display:none}
+
+/* WAITING — knees tucked */
+.fairy-wait .fairy-body{transform:scale(.95);border-radius:50% 50% 50% 50%}
+.fairy-wait .skirt{display:none}
+.fairy-wait .pixie-fairy{animation:waitBob 2.5s ease-in-out infinite}
+@keyframes waitBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+/* TYPING DOTS in bubble */
+.typing-dots{display:flex;gap:4px;padding:4px 6px}
+.typing-dots span{width:7px;height:7px;border-radius:50%;background:rgba(91,61,30,.5);animation:typeBounce 1.2s infinite}
+.typing-dots span:nth-child(2){animation-delay:.2s}
+.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes typeBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+
+/* PIXIE GLOW */
+.pixie-glow{
+  position:absolute;
+  width:80px;height:80px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(120,220,160,.18),transparent 70%);
+  bottom:10px;left:50%;transform:translateX(-50%);
+  animation:glowPulse 3s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes glowPulse{0%,100%{opacity:.5;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.15)}}
+
+/* TOGGLE BTN */
+#pixie-toggle{
+  background:linear-gradient(135deg,var(--earth),var(--mahogany));
+  border:1.5px solid rgba(196,154,108,.3);
+  border-radius:20px;
+  padding:5px 12px;
+  font-family:'DM Sans',sans-serif;
+  font-size:10px;
+  font-weight:600;
+  color:var(--caramel);
+  cursor:pointer;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  margin-top:4px;
+  transition:.2s;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+#pixie-toggle:hover{background:linear-gradient(135deg,var(--coffee),var(--earth))}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<aside class="sidebar">
+  <div class="sb-logo">
+    <div class="logo-wrap">
+      <div class="logo-icon">🍰</div>
+      <div class="logo-txt">
+        <div class="logo-name">Blessed Bites</div>
+        <div class="logo-sub">Command Centre</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pixie-mini" onclick="nav('roadmap',null);setTimeout(()=>showPixieSay('Hi! 👋 Head to the Roadmap to see where we\'re going next!'),400)">
+    <div class="pixie-mini-av">🧚</div>
+    <div>
+      <div class="pixie-mini-txt">Pixie</div>
+      <div class="pixie-mini-st"><span class="pxdot"></span>AI Fairy · Active</div>
+    </div>
+  </div>
+
+  <div class="nav-sec">Workspace</div>
+  <button class="nav-item active" onclick="nav('dashboard',this)"><span class="nav-ico">◈</span>Dashboard</button>
+  <button class="nav-item" onclick="nav('standup',this)"><span class="nav-ico">◎</span>Daily Standup<span class="nav-badge">!</span></button>
+  <button class="nav-item" onclick="nav('kanban',this)"><span class="nav-ico">▦</span>Kanban Board<span class="nav-badge nav-badge-p">7</span></button>
+  <button class="nav-item" onclick="nav('scheduler',this)"><span class="nav-ico">◷</span>Scheduler</button>
+
+  <div class="nav-sec">Finance</div>
+  <button class="nav-item" onclick="nav('budget',this)"><span class="nav-ico">◐</span>Budget Centre</button>
+
+  <div class="nav-sec">Studio</div>
+  <button class="nav-item" onclick="nav('styleguide',this)"><span class="nav-ico">◆</span>Style Guide</button>
+  <button class="nav-item" onclick="nav('roadmap',this)"><span class="nav-ico">◈</span>Roadmap</button>
+
+  <div class="sb-btm">
+    <div class="user-chip">
+      <div class="user-av">M</div>
+      <div>
+        <div class="user-name">Mayah</div>
+        <div class="user-role">Founder · Blessed Bites</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<div class="main">
+  <div class="topbar">
+    <div class="tb-left">
+      <div class="tb-eye" id="tb-eye">Overview</div>
+      <div class="tb-title" id="tb-title">Dashboard</div>
+    </div>
+    <div class="tb-right">
+      <div class="tb-chip live-chip"><span class="live-d"></span>Sage Active</div>
+      <div class="tb-chip" id="tb-date">Tue 22 Apr 2025</div>
+      <div class="tb-av">M</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+<!-- ── DASHBOARD ── -->
+<div class="view active" id="view-dashboard">
+  <div class="sage-box">
+    <div class="sage-hd">
+      <div class="sage-av">🍰</div>
+      <div class="sage-lbl">Sage — Morning Briefing</div>
+      <div class="sage-time" id="sage-time-dash">Loading...</div>
+    </div>
+    <div class="sage-txt">Good morning! Today is Tuesday — your highest walk-in day. You're at 64% of your weekly revenue target (£8,240 of £12,900). One blocker needs attention: card reader down, ~£80/day loss. Sage suggests calling SumUp before your first bake. School sales are your best margin channel — consider a 10% upsell on the Thursday delivery. 🍰</div>
+  </div>
+  <div class="g4">
+    <div class="stat green"><div class="stat-label">Week Revenue</div><div class="stat-val g">£8,240</div><div class="stat-trend up">↑ 12% vs last week</div></div>
+    <div class="stat amber"><div class="stat-label">Week Target</div><div class="stat-val p">£12,900</div><div class="stat-trend">64% achieved</div></div>
+    <div class="stat green"><div class="stat-label">Net Profit</div><div class="stat-val g">£2,810</div><div class="stat-trend up">↑ healthy margin</div></div>
+    <div class="stat coffee"><div class="stat-label">Open Tasks</div><div class="stat-val p">7</div><div class="stat-trend dn">1 blocker flagged</div></div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ct">Revenue Streams — This Week</div>
+      <div class="chart-wrap">
+        <div class="chart-row"><span class="chart-lbl">Walk-in</span><div class="chart-o"><div class="chart-f" style="width:72%;background:linear-gradient(90deg,var(--forest),var(--matcha))">£4,200</div></div><span class="chart-num">£4,200</span></div>
+        <div class="chart-row"><span class="chart-lbl">School Sales</span><div class="chart-o"><div class="chart-f" style="width:30%;background:linear-gradient(90deg,var(--sage),var(--matcha))">£1,650</div></div><span class="chart-num">£1,650</span></div>
+        <div class="chart-row"><span class="chart-lbl">Events</span><div class="chart-o"><div class="chart-f" style="width:22%;background:linear-gradient(90deg,var(--rose),var(--petal))">£1,200</div></div><span class="chart-num">£1,200</span></div>
+        <div class="chart-row"><span class="chart-lbl">Subscriptions</span><div class="chart-o"><div class="chart-f" style="width:11%;background:linear-gradient(90deg,var(--caramel),var(--sand))">£590</div></div><span class="chart-num">£590</span></div>
+        <div class="chart-row"><span class="chart-lbl">Online</span><div class="chart-o"><div class="chart-f" style="width:11%;background:linear-gradient(90deg,var(--coffee),var(--tobacco))">£600</div></div><span class="chart-num">£600</span></div>
+      </div>
+      <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--almond)">
+        <div class="donut-wrap">
+          <svg width="78" height="78" viewBox="0 0 36 36" style="transform:rotate(-90deg);flex-shrink:0">
+            <circle cx="18" cy="18" r="14" fill="none" stroke="var(--almond)" stroke-width="5.5"/>
+            <circle cx="18" cy="18" r="14" fill="none" stroke="var(--matcha)" stroke-width="5.5" stroke-dasharray="51 49" stroke-dashoffset="0"/>
+            <circle cx="18" cy="18" r="14" fill="none" stroke="var(--sage)" stroke-width="5.5" stroke-dasharray="20 80" stroke-dashoffset="-51"/>
+            <circle cx="18" cy="18" r="14" fill="none" stroke="var(--petal)" stroke-width="5.5" stroke-dasharray="15 85" stroke-dashoffset="-71"/>
+            <circle cx="18" cy="18" r="14" fill="none" stroke="var(--coffee)" stroke-width="5.5" stroke-dasharray="14 86" stroke-dashoffset="-86"/>
+          </svg>
+          <div class="donut-leg">
+            <div class="leg-r"><span class="leg-d" style="background:var(--matcha)"></span>Walk-in 51%</div>
+            <div class="leg-r"><span class="leg-d" style="background:var(--sage)"></span>School 20%</div>
+            <div class="leg-r"><span class="leg-d" style="background:var(--petal)"></span>Events 15%</div>
+            <div class="leg-r"><span class="leg-d" style="background:var(--coffee)"></span>Other 14%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">Budget Health</div>
+      <div class="ct-sm" style="color:var(--tobacco);font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px">Break-even · 18 month target</div>
+      <div class="bar-o"><div class="bar-i c" style="width:44%"></div></div>
+      <div class="row-between" style="margin-bottom:11px"><span style="font-size:11px;color:var(--tobacco);font-family:'DM Mono',monospace">£123,200 / £280,000</span><span class="pill n">44%</span></div>
+      <div class="ct-sm" style="color:var(--tobacco);font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px">Ingredient Budget</div>
+      <div class="bar-o"><div class="bar-i a" style="width:82%"></div></div>
+      <div class="row-between" style="margin-bottom:11px"><span style="font-size:11px;color:var(--tobacco);font-family:'DM Mono',monospace">£820 / £1,000</span><span class="pill a">82%</span></div>
+      <div class="ct-sm" style="color:var(--tobacco);font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px">Marketing Budget</div>
+      <div class="bar-o"><div class="bar-i" style="width:50%"></div></div>
+      <div class="row-between" style="margin-bottom:11px"><span style="font-size:11px;color:var(--tobacco);font-family:'DM Mono',monospace">£250 / £500</span><span class="pill">50%</span></div>
+      <div class="ct-sm" style="color:var(--tobacco);font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px">Staffing Budget</div>
+      <div class="bar-o"><div class="bar-i r" style="width:95%"></div></div>
+      <div class="row-between"><span style="font-size:11px;color:var(--tobacco);font-family:'DM Mono',monospace">£1,900 / £2,000</span><span class="pill r">95% ⚠</span></div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="row-between" style="margin-bottom:10px">
+        <div class="ct" style="margin:0">Active Tasks</div>
+        <button class="btn btn-sm btn-pink" onclick="nav('kanban',null)">View Board</button>
+      </div>
+      <div class="tx"><div><div style="font-size:12.5px;font-weight:500">Order almond flour for next week</div><div class="tx-sub"><span class="kbadge kb-ops">Operations</span> · Due tomorrow</div></div><span class="pill a">In Progress</span></div>
+      <div class="tx"><div><div style="font-size:12.5px;font-weight:500">Create school sales flyer</div><div class="tx-sub"><span class="kbadge kb-mkt">Marketing</span> · Due Friday</div></div><span class="pill n">To Do</span></div>
+      <div class="tx"><div><div style="font-size:12.5px;font-weight:500">Fix card reader at counter</div><div class="tx-sub"><span class="kbadge kb-blk">Blocker</span> · Urgent</div></div><span class="pill r">Blocked</span></div>
+      <div class="tx"><div><div style="font-size:12.5px;font-weight:500">Book October events venue</div><div class="tx-sub"><span class="kbadge kb-fin">Finance</span> · This week</div></div><span class="pill a">In Progress</span></div>
+    </div>
+    <div class="card">
+      <div class="ct" style="margin-bottom:8px">This Week</div>
+      <div class="cal-strip" id="cal-strip"></div>
+      <hr class="divider"/>
+      <div class="ct">Recent Transactions</div>
+      <div class="tx"><div><div style="font-size:12.5px;font-weight:500">Walk-in Sales — Mon</div><div class="tx-sub">Daily sales logged</div></div><span class="tx-pos">+£1,240</span></div>
+      <div class="tx"><div><div style="font-size:12.5px;font-weight:500">Ingredient Order</div><div class="tx-sub">Almond flour, butter, eggs</div></div><span class="tx-neg">-£340</span></div>
+      <div class="tx"><div><div style="font-size:12.5px;font-weight:500">School Sales — Tue</div><div class="tx-sub">St Mary's College</div></div><span class="tx-pos">+£480</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── STANDUP ── -->
+<div class="view" id="view-standup">
+  <div class="g2" style="margin-bottom:0">
+    <div>
+      <div class="sage-box">
+        <div class="sage-hd"><div class="sage-av">🍰</div><div class="sage-lbl">Sage — Waiting for Standup</div></div>
+        <div class="sage-txt" id="standup-sage">Complete your 4-question standup and I'll extract tasks, identify blockers, and generate your personalised morning briefing. Usually takes under 2 minutes.</div>
+      </div>
+      <div class="sq"><label><span class="sq-num">1</span>What did you accomplish yesterday?</label><textarea class="inp" id="q1" placeholder="e.g. Completed school sales delivery, restocked pastry display, called supplier about flour pricing..."></textarea></div>
+      <div class="sq"><label><span class="sq-num">2</span>What will you work on today?</label><textarea class="inp" id="q2" placeholder="e.g. Morning bake run, update pricing board, chase October event booking..."></textarea></div>
+      <div class="sq"><label><span class="sq-num">3</span>What (if anything) is blocking your progress?</label><textarea class="inp" id="q3" placeholder="e.g. Card reader still broken, waiting on supplier callback..."></textarea></div>
+      <div class="sq sq4"><label><span class="sq-num q4">4</span>What could we have done better?</label><textarea class="inp" id="q4" placeholder="e.g. Should have ordered more croissants on Monday..."></textarea></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-pink" onclick="doStandup()" style="flex:1">Submit — Generate AI Briefing</button>
+        <button class="btn-ghost" onclick="clearStandup()">Clear</button>
+      </div>
+    </div>
+    <div>
+      <div class="ct" style="font-family:'Cormorant Garamond',serif;font-size:18px;margin-bottom:14px">Standup History</div>
+      <div id="standup-hist">
+        <div class="card" style="margin-bottom:10px">
+          <div class="row-between" style="margin-bottom:8px"><span style="font-size:12px;font-weight:600">Monday 21 April</span><span class="pill n">Yesterday</span></div>
+          <div style="font-size:12px;color:var(--tobacco);line-height:1.7"><strong style="color:var(--coffee)">Done:</strong> Baked 80 croissants, school delivery, supplier call<br><strong style="color:var(--coffee)">Today:</strong> Tuesday bake, pricing review, flyer design<br><strong style="color:var(--red-alert)">Blocker:</strong> Card reader fault — lost ~£80 in sales<br><strong style="color:var(--forest)">Improvement:</strong> Order more stock on Mondays</div>
+          <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap"><span class="kbadge kb-blk">1 Blocker</span><span class="kbadge kb-ops">3 Tasks</span><span class="pill n">Score 7/10</span></div>
+        </div>
+        <div class="card" style="margin-bottom:10px;opacity:.65">
+          <div class="row-between" style="margin-bottom:6px"><span style="font-size:12px;font-weight:600">Sunday 20 April</span><span class="pill n">2 days ago</span></div>
+          <div style="font-size:12px;color:var(--tobacco)">Full bake + prep for school week. No blockers. Revenue: £940.</div>
+        </div>
+      </div>
+      <div class="card-earth" style="margin-top:12px">
+        <div style="font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--petal);margin-bottom:8px;font-weight:700">🍰 Weekly Retrospective — AI Summary</div>
+        <div style="font-size:12px;line-height:1.8;color:rgba(245,235,220,.82)">This week you completed 12 of 15 planned tasks (80%). Card reader was your biggest blocker — resolve by Wednesday. School sales ↑ 15% vs last week. Top improvement: stock ordering.</div>
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+          <div class="score-ring" style="--pct:72%"><span class="score-val">72</span></div>
+          <div><div style="font-size:11px;color:var(--petal);font-weight:700">Productivity Score</div><div style="font-size:10px;color:rgba(196,154,108,.4);margin-top:2px">+8pts vs last week · Keep going!</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── KANBAN ── -->
+<div class="view" id="view-kanban">
+  <div class="row-between" style="margin-bottom:13px">
+    <div></div>
+    <div style="display:flex;gap:8px">
+      <select class="inp" style="width:auto;margin:0;padding:6px 10px;font-size:12px"><option>All Categories</option><option>Finance</option><option>Operations</option><option>Marketing</option></select>
+      <button class="btn btn-pink" onclick="openAddTask()">+ Add Task</button>
+    </div>
+  </div>
+  <div class="sage-box">
+    <div class="sage-hd"><div class="sage-av">🍰</div><div class="sage-lbl">Sage — Board Intelligence</div></div>
+    <div class="sage-txt"><strong style="color:var(--petal)">Priority Alert:</strong> 1 blocker (card reader) costing £80/day. 2 tasks past due. Suggested order: Fix card reader → Order almond flour → Create school flyer. Velocity this week: 4 cards completed.</div>
+  </div>
+  <div class="kanban">
+    <div class="kol" style="border-top:3px solid rgba(140,168,136,.4)">
+      <div class="kol-hd"><span class="kol-title">To Do</span><span class="kol-cnt" style="background:var(--almond);color:var(--coffee)">3</span></div>
+      <div id="col-todo">
+        <div class="task"><div class="task-title">Create school sales flyer</div><div class="task-meta"><span class="kbadge kb-mkt">Marketing</span> · Due Fri</div><div class="task-actions"><button class="btn btn-sm" onclick="moveTask(this,'col-progress')">Start →</button></div></div>
+        <div class="task"><div class="task-title">Set up loyalty card system</div><div class="task-meta"><span class="kbadge kb-ops">Operations</span> · Next week</div><div class="task-actions"><button class="btn btn-sm" onclick="moveTask(this,'col-progress')">Start →</button></div></div>
+        <div class="task"><div class="task-title">Review Q4 pricing strategy</div><div class="task-meta"><span class="kbadge kb-fin">Finance</span> · This month</div><div class="task-actions"><button class="btn btn-sm" onclick="moveTask(this,'col-progress')">Start →</button></div></div>
+      </div>
+    </div>
+    <div class="kol" style="border-top:3px solid rgba(154,96,32,.4)">
+      <div class="kol-hd"><span class="kol-title">In Progress</span><span class="kol-cnt" style="background:var(--amber-lt);color:var(--amber)">2</span></div>
+      <div id="col-progress">
+        <div class="task"><div class="task-title">Order almond flour for next week</div><div class="task-meta"><span class="kbadge kb-ops">Operations</span> · Due Tomorrow</div><div class="task-actions"><button class="btn btn-sm" onclick="moveTask(this,'col-done')">Done ✓</button><button class="btn-danger" onclick="moveTask(this,'col-blocked')">Block</button></div></div>
+        <div class="task"><div class="task-title">Book October events venue</div><div class="task-meta"><span class="kbadge kb-fin">Finance</span> · This week</div><div class="task-actions"><button class="btn btn-sm" onclick="moveTask(this,'col-done')">Done ✓</button><button class="btn-danger" onclick="moveTask(this,'col-blocked')">Block</button></div></div>
+      </div>
+    </div>
+    <div class="kol" style="border-top:3px solid rgba(155,58,46,.4)">
+      <div class="kol-hd"><span class="kol-title">Blocked</span><span class="kol-cnt" style="background:var(--red-lt);color:var(--red-alert)">1</span></div>
+      <div id="col-blocked">
+        <div class="task" style="border-left-color:var(--red-alert)">
+          <div class="task-title">Fix card reader at counter</div>
+          <div class="task-meta"><span class="kbadge kb-blk">Blocker</span> · Urgent · £80/day</div>
+          <div class="blocker-tip">🍰 Sage: Call SumUp 0800 756 738 or use Square reader as backup.</div>
+          <div class="task-actions"><button class="btn btn-sm" onclick="moveTask(this,'col-progress')">Unblock →</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="kol" style="border-top:3px solid rgba(61,90,56,.4)">
+      <div class="kol-hd"><span class="kol-title">Done ✓</span><span class="kol-cnt" style="background:var(--mint);color:var(--forest)">4</span></div>
+      <div id="col-done">
+        <div class="task" style="opacity:.6"><div class="task-title">Monday morning bake</div><div class="task-meta"><span class="kbadge kb-ops">Operations</span> · Mon</div></div>
+        <div class="task" style="opacity:.6"><div class="task-title">School delivery — St Mary's</div><div class="task-meta"><span class="kbadge kb-ops">Operations</span> · Mon</div></div>
+        <div class="task" style="opacity:.6"><div class="task-title">Supplier pricing call</div><div class="task-meta"><span class="kbadge kb-fin">Finance</span> · Mon</div></div>
+        <div class="task" style="opacity:.6"><div class="task-title">Update Instagram bio</div><div class="task-meta"><span class="kbadge kb-mkt">Marketing</span> · Sun</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SCHEDULER ── -->
+<div class="view" id="view-scheduler">
+  <div class="sage-box">
+    <div class="sage-hd"><div class="sage-av">🍰</div><div class="sage-lbl">Sage — Schedule Intelligence</div></div>
+    <div class="sage-txt">Tuesday schedule loaded. Protect the 6am–10am bake window. School delivery at 12pm. 45-min gap at 2:15pm ideal for supplier calls. Log today's sales before 7pm.</div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ct">Today's Schedule — Tue 22 Apr</div>
+      <div class="sched-row"><span class="sched-time">06:00</span><div class="sched-bar"><div class="sched-ev" style="left:0;width:35%;background:linear-gradient(90deg,var(--earth),var(--coffee));color:var(--cream)">🥐 Morning Bake</div></div></div>
+      <div class="sched-row"><span class="sched-time">08:00</span><div class="sched-bar"><div class="sched-ev" style="left:0;width:28%;background:linear-gradient(90deg,var(--sage),var(--matcha));color:#fff">Store Open</div></div></div>
+      <div class="sched-row"><span class="sched-time">10:00</span><div class="sched-bar"><div class="sched-ev" style="left:0;width:22%;background:linear-gradient(90deg,var(--blush),var(--petal));color:var(--coffee)">⚡ Admin</div></div></div>
+      <div class="sched-row"><span class="sched-time">12:00</span><div class="sched-bar"><div class="sched-ev" style="left:0;width:25%;background:linear-gradient(90deg,var(--forest),var(--sage));color:#fff">🚚 School Delivery</div></div></div>
+      <div class="sched-row"><span class="sched-time">14:00</span><div class="sched-bar"><div class="sched-ev" style="left:0;width:18%;background:linear-gradient(90deg,var(--caramel),var(--sand));color:var(--coffee)">📞 Calls</div></div></div>
+      <div class="sched-row"><span class="sched-time">16:00</span><div class="sched-bar"><div class="sched-ev" style="left:0;width:30%;background:linear-gradient(90deg,var(--rose),var(--petal));color:#fff">Walk-in Peak</div></div></div>
+      <div class="sched-row"><span class="sched-time">18:00</span><div class="sched-bar"><div class="sched-ev" style="left:0;width:20%;background:linear-gradient(90deg,var(--mahogany),var(--earth));color:var(--cream)">📊 Log Sales</div></div></div>
+      <div class="sched-row"><span class="sched-time">19:00</span><div class="sched-bar"><div class="sched-ev" style="left:0;width:15%;background:var(--almond);color:var(--coffee)">Close</div></div></div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:14px">
+        <div class="ct">Weekly Overview</div>
+        <div class="cal-strip" id="cal-strip-2"></div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+          <div class="row-between" style="font-size:12px"><span style="color:var(--tobacco)">Mon</span><span style="font-weight:500">Bake · School delivery · Supplier call</span></div>
+          <div class="row-between" style="font-size:12px"><span style="color:var(--rose);font-weight:700">Tue ←</span><span style="font-weight:500">Bake · Walk-in · Pricing review</span></div>
+          <div class="row-between" style="font-size:12px"><span style="color:var(--tobacco)">Wed</span><span style="font-weight:500">Bake · Card reader fix · Admin</span></div>
+          <div class="row-between" style="font-size:12px"><span style="color:var(--tobacco)">Thu</span><span style="font-weight:500">Bake · School delivery · Event booking</span></div>
+          <div class="row-between" style="font-size:12px"><span style="color:var(--tobacco)">Fri</span><span style="font-weight:500">Bake · Walk-in · Weekly review</span></div>
+        </div>
+      </div>
+      <div class="card-earth">
+        <div style="font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--petal);margin-bottom:8px;font-weight:700">🍰 Sage — Claude Routines</div>
+        <div style="font-size:12px;line-height:1.9;color:rgba(245,235,220,.82)">
+          <strong style="color:var(--sand)">🌅 8am Morning Brief</strong><br>Revenue target · Priority task · Weather footfall<br><br>
+          <strong style="color:var(--sand)">🌙 6pm EOD Summary</strong><br>Sales logged · Task review · Tomorrow prep<br><br>
+          <strong style="color:var(--sand)">📅 Sunday Retrospective</strong><br>Week analysis · Score · Top 3 improvements
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── BUDGET ── -->
+<div class="view" id="view-budget">
+  <div class="tab-tog">
+    <button class="tab-opt active" onclick="switchBud('biz',this)">Business</button>
+    <button class="tab-opt" onclick="switchBud('personal',this)">Personal</button>
+    <button class="tab-opt" onclick="switchBud('add',this)">Add Transaction</button>
+  </div>
+  <div id="bud-biz">
+    <div class="sage-box">
+      <div class="sage-hd"><div class="sage-av">🍰</div><div class="sage-lbl">Sage — Finance Intelligence</div></div>
+      <div class="sage-txt">Ingredient costs running 2% over budget. Walk-in sales are your #1 revenue driver at 51% of weekly income. Staffing at 95% — review weekend hours. Overall health: <strong style="color:var(--matcha)">Stable ✓</strong></div>
+    </div>
+    <div class="g4">
+      <div class="stat green"><div class="stat-label">Month Revenue</div><div class="stat-val g">£31,400</div></div>
+      <div class="stat"><div class="stat-label">Month Expenses</div><div class="stat-val r">£19,200</div></div>
+      <div class="stat green"><div class="stat-label">Net Profit</div><div class="stat-val g">£12,200</div></div>
+      <div class="stat coffee"><div class="stat-label">Savings Pot</div><div class="stat-val">£8,400</div></div>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <div class="ct">Budget Categories</div>
+        <div style="font-size:12px;font-weight:600;margin-bottom:4px">Ingredients <span class="pill a" style="float:right">82%</span></div>
+        <div class="bar-o"><div class="bar-i a" style="width:82%"></div></div>
+        <div style="font-size:12px;font-weight:600;margin-bottom:4px">Staffing <span class="pill r" style="float:right">95%</span></div>
+        <div class="bar-o"><div class="bar-i r" style="width:95%"></div></div>
+        <div style="font-size:12px;font-weight:600;margin-bottom:4px">Rent & Utilities <span class="pill n" style="float:right">100%</span></div>
+        <div class="bar-o"><div class="bar-i c" style="width:100%"></div></div>
+        <div style="font-size:12px;font-weight:600;margin-bottom:4px">Marketing <span class="pill" style="float:right">50%</span></div>
+        <div class="bar-o"><div class="bar-i" style="width:50%"></div></div>
+        <div style="font-size:12px;font-weight:600;margin-bottom:4px">Equipment <span class="pill" style="float:right">20%</span></div>
+        <div class="bar-o"><div class="bar-i" style="width:20%"></div></div>
+      </div>
+      <div class="card">
+        <div class="ct">Recent Transactions</div>
+        <div class="scrollarea">
+          <div class="tx"><div><div style="font-size:12.5px;font-weight:500">Walk-in Sales</div><div class="tx-sub">21 Apr · Daily</div></div><span class="tx-pos">+£1,240</span></div>
+          <div class="tx"><div><div style="font-size:12.5px;font-weight:500">Ingredient Order</div><div class="tx-sub">21 Apr · Ops</div></div><span class="tx-neg">-£340</span></div>
+          <div class="tx"><div><div style="font-size:12.5px;font-weight:500">School Sales</div><div class="tx-sub">21 Apr · St Mary's</div></div><span class="tx-pos">+£480</span></div>
+          <div class="tx"><div><div style="font-size:12.5px;font-weight:500">Staffing Cost</div><div class="tx-sub">20 Apr · Weekly</div></div><span class="tx-neg">-£620</span></div>
+          <div class="tx"><div><div style="font-size:12.5px;font-weight:500">Event Catering</div><div class="tx-sub">19 Apr · Corporate</div></div><span class="tx-pos">+£1,800</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="bud-personal" class="hidden">
+    <div class="g4">
+      <div class="stat"><div class="stat-label">Personal Draw</div><div class="stat-val">£2,400</div></div>
+      <div class="stat"><div class="stat-label">Personal Expenses</div><div class="stat-val r">£1,840</div></div>
+      <div class="stat green"><div class="stat-label">Personal Savings</div><div class="stat-val g">£560</div></div>
+      <div class="stat coffee"><div class="stat-label">Savings Goal</div><div class="stat-val">£800/mo</div></div>
+    </div>
+    <div class="card">
+      <div class="ct">Personal Transactions</div>
+      <div class="tx"><div><div style="font-size:12.5px;font-weight:500">Transport</div><div class="tx-sub">April</div></div><span class="tx-neg">-£180</span></div>
+      <div class="tx"><div><div style="font-size:12.5px;font-weight:500">Food & Groceries</div><div class="tx-sub">April</div></div><span class="tx-neg">-£320</span></div>
+      <div class="tx"><div><div style="font-size:12.5px;font-weight:500">Business Owner Draw</div><div class="tx-sub">April salary</div></div><span class="tx-pos">+£2,400</span></div>
+    </div>
+  </div>
+  <div id="bud-add" class="hidden">
+    <div class="card" style="max-width:500px">
+      <div class="ct">Add Transaction</div>
+      <div class="tab-tog" style="margin-bottom:12px">
+        <button class="tab-opt active" onclick="this.parentNode.querySelectorAll('.tab-opt').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Income</button>
+        <button class="tab-opt" onclick="this.parentNode.querySelectorAll('.tab-opt').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Expense</button>
+      </div>
+      <select class="inp"><option>Walk-in Sales</option><option>School Sales</option><option>Events & Catering</option><option>Subscription Box</option><option>Ingredients</option><option>Staffing</option><option>Marketing</option><option>Rent & Utilities</option></select>
+      <input class="inp" type="number" placeholder="Amount (£)"/>
+      <input class="inp" type="text" placeholder="Note (optional)"/>
+      <div style="display:flex;gap:8px"><button class="btn btn-pink" style="flex:1">Add Transaction</button><button class="btn-ghost">Cancel</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── STYLE GUIDE ── -->
+<div class="view" id="view-styleguide">
+  <div class="sage-box">
+    <div class="sage-hd"><div class="sage-av">🍰</div><div class="sage-lbl">Sage — Brand Identity</div></div>
+    <div class="sage-txt">This is your complete Blessed Bites style guide. Every colour, font and component has been chosen to feel warm, premium and beautiful — like your baking. Use this as your single source of brand truth.</div>
+  </div>
+  <div class="card" style="margin-bottom:16px">
+    <div class="ct">Colour Palette — Blessed Bites</div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-col" style="background:#1A150D"></div><div class="swatch-info"><div class="swatch-name">Mahogany</div><div class="swatch-hex">#1A150D</div></div></div>
+      <div class="swatch"><div class="swatch-col" style="background:#3D2B1A"></div><div class="swatch-info"><div class="swatch-name">Earth</div><div class="swatch-hex">#3D2B1A</div></div></div>
+      <div class="swatch"><div class="swatch-col" style="background:#5C3D1E"></div><div class="swatch-info"><div class="swatch-name">Coffee</div><div class="swatch-hex">#5C3D1E</div></div></div>
+      <div class="swatch"><div class="swatch-col" style="background:#C49A6C"></div><div class="swatch-info"><div class="swatch-name">Caramel</div><div class="swatch-hex">#C49A6C</div></div></div>
+      <div class="swatch"><div class="swatch-col" style="background:#F0E4D4"></div><div class="swatch-info"><div class="swatch-name">Almond</div><div class="swatch-hex">#F0E4D4</div></div></div>
+      <div class="swatch"><div class="swatch-col" style="background:#FAF5EE"></div><div class="swatch-info"><div class="swatch-name">Cream</div><div class="swatch-hex">#FAF5EE</div></div></div>
+      <div class="swatch"><div class="swatch-col" style="background:#F2C4CE"></div><div class="swatch-info"><div class="swatch-name">Blush</div><div class="swatch-hex">#F2C4CE</div></div></div>
+      <div class="swatch"><div class="swatch-col" style="background:#E8A0B0"></div><div class="swatch-info"><div class="swatch-name">Petal</div><div class="swatch-hex">#E8A0B0</div></div></div>
+      <div class="swatch"><div class="swatch-col" style="background:#C4687E"></div><div class="swatch-info"><div class="swatch-name">Rose</div><div class="swatch-hex">#C4687E</div></div></div>
+      <div class="swatch"><div class="swatch-col" style="background:#3D5A38"></div><div class="swatch-info"><div class="swatch-name">Forest</div><div class="swatch-hex">#3D5A38</div></div></div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ct">Typography</div>
+      <div class="font-box">
+        <div style="font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--tobacco);font-weight:700;margin-bottom:8px">Headings — Cormorant Garamond</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--coffee);line-height:1.2">Baked with love,<br><em style="font-weight:400">crafted with care.</em></div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--tobacco);margin-top:8px">H2 — Section Headers &amp; Titles</div>
+      </div>
+      <div class="font-box">
+        <div style="font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--tobacco);font-weight:700;margin-bottom:8px">Body — DM Sans</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:15px;color:var(--coffee);font-weight:400;line-height:1.6">Regular body copy — clear, warm, legible.</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:var(--tobacco);margin-top:6px;font-weight:700;text-transform:uppercase;letter-spacing:.12em">LABELS · BADGES · METADATA</div>
+      </div>
+      <div class="font-box" style="margin-bottom:0">
+        <div style="font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:var(--tobacco);font-weight:700;margin-bottom:8px">Numbers — DM Mono</div>
+        <div style="font-family:'DM Mono',monospace;font-size:22px;color:var(--forest);font-weight:500">£12,345.67</div>
+        <div style="font-family:'DM Mono',monospace;font-size:13px;color:var(--tobacco)">07:42am · #3D2B1A · 82%</div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:14px">
+        <div class="ct">AI Mascot — Pixie 🧚</div>
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <div style="text-align:center;flex-shrink:0">
+            <div style="width:80px;height:80px;background:linear-gradient(135deg,var(--forest),var(--matcha));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;margin:0 auto 8px;box-shadow:0 4px 16px rgba(61,90,56,.3)">🧚</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:var(--coffee)">Pixie</div>
+            <div style="font-size:10px;color:var(--tobacco);margin-top:2px">AI Fairy Agent</div>
+          </div>
+          <div style="font-size:12px;color:var(--tobacco);line-height:1.75">
+            <strong style="color:var(--coffee)">Name:</strong> Pixie 🧚<br>
+            <strong style="color:var(--coffee)">Appearance:</strong> Chibi fairy, dark skin, curly black hair, big green eyes, emerald wings, sage green dress<br>
+            <strong style="color:var(--coffee)">Morning:</strong> Floating with emeralds, warm greeting<br>
+            <strong style="color:var(--coffee)">Waiting:</strong> Knees tucked, glass bubble<br>
+            <strong style="color:var(--coffee)">Night:</strong> Sleeping — click to wake!<br>
+            <strong style="color:var(--coffee)">Personality:</strong> Cute, elegant, warm, witty
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ct">UI Components</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+          <button class="btn">Primary Btn</button>
+          <button class="btn btn-pink">Rose Btn</button>
+          <button class="btn-ghost">Ghost</button>
+          <button class="btn-danger">Danger</button>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
+          <span class="pill">Active</span><span class="pill r">Blocked</span><span class="pill a">Warning</span><span class="pill p">Pink</span><span class="pill n">Neutral</span>
+        </div>
+        <div class="bar-o" style="margin-bottom:4px"><div class="bar-i" style="width:72%"></div></div>
+        <div class="bar-o" style="margin-bottom:4px"><div class="bar-i p" style="width:50%"></div></div>
+        <div class="bar-o" style="margin-bottom:0"><div class="bar-i r" style="width:88%"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ROADMAP ── -->
+<div class="view" id="view-roadmap">
+  <div class="sage-box">
+    <div class="sage-hd"><div class="sage-av">🍰</div><div class="sage-lbl">Sage — Roadmap Intelligence</div></div>
+    <div class="sage-txt">You're on <strong style="color:var(--petal)">Phase 1 — MVP, fully live</strong>. Your standup data is building the pattern library for Phase 2 smart coaching. Check on Pixie below! 🧚✨</div>
+  </div>
+  <div class="g2">
+    <div>
+      <div class="phase"><div class="ph-num done">✓</div><div class="ph-content"><h4>Phase 1 — MVP (This Week) <span class="pill" style="background:var(--mint);color:var(--forest)">LIVE</span></h4><p>Daily standup, real-time AI, Kanban, task extraction, blockers, budget, scheduler, style guide.</p><div class="ph-tags"><span class="pill n">Standup</span><span class="pill n">AI Analysis</span><span class="pill n">Kanban</span><span class="pill n">Budget</span><span class="pill n">Pixie</span></div></div></div>
+      <div class="phase"><div class="ph-num active">2</div><div class="ph-content"><h4>Phase 2 — Intelligence (Next Week) <span class="pill a">In Progress</span></h4><p>Morning & EOD Claude routines, blocker resolution, weekly retrospective automation, productivity coaching.</p><div class="ph-tags"><span class="pill n">Morning Brief</span><span class="pill n">EOD Summary</span><span class="pill n">Blocker AI</span><span class="pill n">Coaching</span></div></div></div>
+      <div class="phase"><div class="ph-num">3</div><div class="ph-content"><h4>Phase 3 — Team Features (Week 3) <span class="pill n">Planned</span></h4><p>Multi-user team dashboard, dependency mapping, Slack integration, mobile app.</p><div class="ph-tags"><span class="pill n">Team</span><span class="pill n">Slack</span><span class="pill n">Mobile</span></div></div></div>
+    </div>
+    <div>
+      <div class="card-forest" style="margin-bottom:14px">
+        <div style="font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--petal);margin-bottom:10px;font-weight:700">🍰 Sage — Claude Routines (Phase 2)</div>
+        <div style="font-size:12px;line-height:1.9;color:rgba(245,235,220,.85)">
+          <strong>🌅 Morning Routine (8am)</strong><br>Daily briefing · Revenue target · Priority task · Footfall prediction<br><br>
+          <strong>🌙 EOD Routine (6pm)</strong><br>Sales summary · Task review · Blockers for tomorrow · Auto savings<br><br>
+          <strong>📅 Sunday Retrospective</strong><br>Full week analysis · Score · Revenue vs target · Top 3 next week
+        </div>
+      </div>
+      <div class="card">
+        <div class="ct">Feature Value Matrix</div>
+        <div class="chart-wrap">
+          <div class="chart-row"><span class="chart-lbl" style="width:100px">AI Briefings</span><div class="chart-o"><div class="chart-f" style="width:95%;background:linear-gradient(90deg,var(--forest),var(--matcha))">High</div></div></div>
+          <div class="chart-row"><span class="chart-lbl" style="width:100px">Kanban Board</span><div class="chart-o"><div class="chart-f" style="width:88%;background:linear-gradient(90deg,var(--rose),var(--petal))">High</div></div></div>
+          <div class="chart-row"><span class="chart-lbl" style="width:100px">Daily Standup</span><div class="chart-o"><div class="chart-f" style="width:90%;background:linear-gradient(90deg,var(--earth),var(--coffee))">High</div></div></div>
+          <div class="chart-row"><span class="chart-lbl" style="width:100px">Budget Track</span><div class="chart-o"><div class="chart-f" style="width:82%;background:linear-gradient(90deg,var(--caramel),var(--sand))">Med-Hi</div></div></div>
+          <div class="chart-row"><span class="chart-lbl" style="width:100px">Pixie AI</span><div class="chart-o"><div class="chart-f" style="width:92%;background:linear-gradient(90deg,var(--sage),var(--matcha))">High</div></div></div>
+          <div class="chart-row"><span class="chart-lbl" style="width:100px">Mobile App</span><div class="chart-o"><div class="chart-f" style="width:70%;background:linear-gradient(90deg,var(--tobacco),var(--caramel))">Medium</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+</div><!-- /shell -->
+
+<!-- ═══════════════════════════════════════
+     ✨ PIXIE FAIRY — FLOATING CHATBOT
+═══════════════════════════════════════ -->
+<div id="pixie-container">
+  <!-- Speech Bubble (normal/morning/waiting) -->
+  <div class="pixie-bubble" id="pixie-bubble">Hello! 💕</div>
+  <!-- Sleep Bubble -->
+  <div class="sleep-bubble" id="sleep-bubble">
+    <div class="zzz-text">z z Z</div>
+    <div class="zzz-dots"><div class="zzz-dot"></div><div class="zzz-dot"></div><div class="zzz-dot"></div></div>
+  </div>
+
+  <div class="pixie-scene" id="pixie-scene">
+    <div class="pixie-glow"></div>
+    <!-- Floating Gems (morning only) -->
+    <div class="gem gem-1" id="gem-1">
+      <svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="6,0 12,4 12,10 6,14 0,10 0,4" fill="rgba(80,220,150,.7)" stroke="rgba(120,255,180,.9)" stroke-width="0.8"/>
+        <polygon points="6,2 10,5 10,9 6,12 2,9 2,5" fill="rgba(160,255,200,.5)"/>
+        <line x1="6" y1="0" x2="6" y2="14" stroke="rgba(255,255,255,.4)" stroke-width="0.4"/>
+      </svg>
+    </div>
+    <div class="gem gem-2" id="gem-2">
+      <svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="6,0 12,4 12,10 6,14 0,10 0,4" fill="rgba(60,200,120,.75)" stroke="rgba(100,255,160,.9)" stroke-width="0.8"/>
+        <polygon points="6,2 10,5 10,9 6,12 2,9 2,5" fill="rgba(140,255,180,.5)"/>
+      </svg>
+    </div>
+    <div class="gem gem-3" id="gem-3">
+      <svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="6,0 12,4 12,10 6,14 0,10 0,4" fill="rgba(100,230,160,.7)" stroke="rgba(180,255,210,.9)" stroke-width="0.8"/>
+        <polygon points="6,2 10,5 10,9 6,12 2,9 2,5" fill="rgba(200,255,220,.4)"/>
+      </svg>
+    </div>
+    <div class="gem gem-4" id="gem-4">
+      <svg viewBox="0 0 9 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="4.5,0 9,3 9,8 4.5,11 0,8 0,3" fill="rgba(80,210,130,.65)" stroke="rgba(140,255,180,.8)" stroke-width="0.8"/>
+      </svg>
+    </div>
+    <div class="gem gem-5" id="gem-5">
+      <svg viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="4,0 8,3 8,7 4,10 0,7 0,3" fill="rgba(50,190,110,.7)" stroke="rgba(120,240,160,.85)" stroke-width="0.8"/>
+      </svg>
+    </div>
+
+    <!-- THE FAIRY -->
+    <div class="pixie-fairy" id="pixie-fairy">
+      <!-- Wings -->
+      <div class="wings">
+        <div class="wing-l"></div>
+        <div class="wing-r"></div>
+        <div class="wing-l-sm"></div>
+        <div class="wing-r-sm"></div>
+      </div>
+      <!-- Head -->
+      <div class="fairy-head">
+        <div class="hair-top"></div>
+        <div class="hair-side l"></div>
+        <div class="hair-side r"></div>
+        <div class="eye eye-l"></div>
+        <div class="eye eye-r"></div>
+        <div class="cheek cheek-l"></div>
+        <div class="cheek cheek-r"></div>
+        <div class="lips"></div>
+        <div class="crown"><span class="flower">🌸</span><span class="flower">🌿</span><span class="flower">🌸</span></div>
+      </div>
+      <!-- Body -->
+      <div class="fairy-body">
+        <div class="arm l"></div>
+        <div class="arm r"></div>
+        <div class="dress-detail"></div>
+      </div>
+      <!-- Skirt -->
+      <div class="skirt"></div>
+    </div>
+  </div>
+
+  <button id="pixie-toggle" onclick="pixieChat()">💬 Chat with Pixie</button>
+</div>
+
+<!-- ADD TASK MODAL -->
+<div class="modal-ov hidden" id="task-modal">
+  <div class="modal-box">
+    <h3>Add New Task</h3>
+    <input class="inp" id="task-title" placeholder="Task title"/>
+    <select class="inp" id="task-cat"><option value="">Category</option><option>Finance</option><option>Operations</option><option>Marketing</option><option>Events</option></select>
+    <select class="inp" id="task-col"><option value="col-todo">To Do</option><option value="col-progress">In Progress</option><option value="col-blocked">Blocked</option></select>
+    <input class="inp" id="task-due" placeholder="Due date (e.g. Tomorrow, Friday)"/>
+    <textarea class="inp" id="task-note" placeholder="Notes (optional)" style="min-height:60px"></textarea>
+    <div class="modal-act">
+      <button class="btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-pink" onclick="addTask()">Add Task</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════ NAVIGATION ═══════
+const navTitles={dashboard:['Overview','Dashboard'],standup:['Daily Check-in','Daily Standup'],kanban:['Project Board','Kanban Board'],scheduler:['Time Planning','Scheduler'],budget:['Financial Hub','Budget Centre'],styleguide:['Brand Identity','Style Guide'],roadmap:['Product Planning','Roadmap']};
+function nav(v,btn){
+  document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  if(btn)btn.classList.add('active');
+  else document.querySelectorAll('.nav-item').forEach(el=>{if(el.textContent.toLowerCase().trim().startsWith(v.slice(0,4)))el.classList.add('active')});
+  if(navTitles[v]){document.getElementById('tb-eye').textContent=navTitles[v][0];document.getElementById('tb-title').textContent=navTitles[v][1];}
+}
+
+// ═══════ CALENDAR ═══════
+function buildCal(id){
+  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const dates=[21,22,23,24,25,26,27];
+  const events=[true,true,false,true,false,true,false];
+  const el=document.getElementById(id);
+  if(!el)return;
+  days.forEach((d,i)=>{
+    const c=document.createElement('div');
+    c.className='cal-day'+(i===1?' today':'')+(events[i]?' has-event':'');
+    c.innerHTML=`<span class="cal-dn">${d}</span><span class="cal-dd">${dates[i]}</span>`;
+    el.appendChild(c);
+  });
+}
+buildCal('cal-strip');buildCal('cal-strip-2');
+
+// ═══════ BUDGET TABS ═══════
+function switchBud(tab,btn){
+  document.querySelectorAll('#view-budget .tab-opt').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  ['biz','personal','add'].forEach(t=>document.getElementById('bud-'+t).classList.toggle('hidden',t!==tab));
+}
+
+// ═══════ KANBAN ═══════
+function moveTask(btn,target){
+  const task=btn.closest('.task');
+  const col=document.getElementById(target);
+  if(target==='col-done'){task.style.opacity='0.6';task.querySelectorAll('.task-actions button').forEach(b=>b.remove());}
+  col.appendChild(task);
+}
+function openAddTask(){document.getElementById('task-modal').classList.remove('hidden')}
+function closeModal(){document.getElementById('task-modal').classList.add('hidden')}
+function addTask(){
+  const title=document.getElementById('task-title').value.trim();
+  if(!title)return;
+  const cat=document.getElementById('task-cat').value;
+  const col=document.getElementById('task-col').value;
+  const due=document.getElementById('task-due').value;
+  const cc={'Finance':'kb-fin','Operations':'kb-ops','Marketing':'kb-mkt','Events':'kb-fin'}[cat]||'kb-ops';
+  const el=document.createElement('div');el.className='task';
+  el.innerHTML=`<div class="task-title">${title}</div><div class="task-meta"><span class="kbadge ${cc}">${cat||'General'}</span>${due?` · ${due}`:''}</div><div class="task-actions"><button class="btn btn-sm" onclick="moveTask(this,'col-progress')">Start →</button><button class="btn-danger" onclick="this.closest('.task').remove()">✕</button></div>`;
+  document.getElementById(col).appendChild(el);
+  ['task-title','task-due','task-note'].forEach(id=>document.getElementById(id).value='');
+  closeModal();
+}
+
+// ═══════ STANDUP ═══════
+const sR=["Analysis complete! I've extracted 2 tasks and flagged 1 blocker. Card reader is high priority — £80/day loss. Your productivity is tracking above last week! 🍰","Standup logged! Blocker in Q3 detected. I'm suggesting: send a follow-up email to the supplier today. I've added 'Chase supplier' to your board.","Great standup! No blockers — tackle the backlog today. Your revenue target is ~£400 today to stay on track. Walk-in peak starts at 4pm! 🌸","Logged and analysed! Your improvement idea is insightful — I'll remind you every Monday to check stock. Velocity this week: above average. Keep it up!"];
+let sI=0;
+function doStandup(){
+  const q1=document.getElementById('q1').value,q2=document.getElementById('q2').value;
+  if(!q1&&!q2){alert('Please fill in at least questions 1 and 2.');return;}
+  const box=document.getElementById('standup-sage');
+  const hd=document.querySelector('#view-standup .sage-lbl');
+  hd.textContent='Sage — Processing...';
+  box.style.opacity='.4';box.style.fontStyle='italic';
+  box.textContent='Analysing your standup with AI...';
+  pixieWait();
+  setTimeout(()=>{
+    box.style.opacity='1';box.style.fontStyle='normal';
+    hd.textContent='Sage — Briefing Ready';
+    box.textContent=sR[sI%sR.length];sI++;
+    pixieSpeak('Done! I\'ve updated your board. ✨');
+    const hist=document.getElementById('standup-hist');
+    const today=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+    const entry=document.createElement('div');entry.className='card';entry.style.marginBottom='10px';
+    entry.innerHTML=`<div class="row-between" style="margin-bottom:8px"><span style="font-size:12px;font-weight:600">${today}</span><span class="pill n">Just now</span></div>
+    <div style="font-size:12px;color:var(--tobacco);line-height:1.7">
+    ${q1?`<strong style="color:var(--coffee)">Done:</strong> ${q1.slice(0,100)}<br>`:''}
+    ${q2?`<strong style="color:var(--coffee)">Today:</strong> ${q2.slice(0,100)}<br>`:''}
+    ${document.getElementById('q3').value?`<strong style="color:var(--red-alert)">Blocker:</strong> ${document.getElementById('q3').value.slice(0,100)}<br>`:''}
+    ${document.getElementById('q4').value?`<strong style="color:var(--forest)">Improvement:</strong> ${document.getElementById('q4').value.slice(0,100)}`:''}
+    </div><div style="margin-top:8px;display:flex;gap:4px"><span class="kbadge kb-ops">Logged</span><span class="pill n">AI Processed</span></div>`;
+    hist.insertBefore(entry,hist.firstChild);
+  },1800);
+}
+function clearStandup(){
+  ['q1','q2','q3','q4'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('standup-sage').textContent="Complete your 4-question standup and I'll extract tasks, identify blockers, and generate your personalised morning briefing. Usually takes under 2 minutes.";
+  document.querySelector('#view-standup .sage-lbl').textContent='Sage — Waiting for Standup';
+}
+
+// ═══════════════════════════════════════
+// ✨ PIXIE FAIRY INTELLIGENCE SYSTEM
+// ═══════════════════════════════════════
+let pixieState='normal'; // morning | normal | waiting | sleeping
+let pixieAwake=true;
+let pixieBubbleTimer=null;
+
+const morningGreetings=[
+  "Good morning beautiful! ✨ Ready to bake the day amazing?",
+  "Rise & shine! 🌅 Today's going to be a wonderful day!",
+  "Morning sunshine! ☀️ Your bakery magic starts now!",
+  "Good morning! 🌸 I'm here to help you sparkle today!"
+];
+const waitingMsgs=[
+  "I'm thinking... 💭",
+  "Just a moment! ✨",
+  "Processing your magic... 🌿"
+];
+const clickMsgs=[
+  "Hi there! 💕 Need help with anything?",
+  "You clicked me! 🌸 How can Pixie help?",
+  "Hello gorgeous! ✨ Ready to get things done?",
+  "I'm here! 🍀 What do you need?",
+  "Pixie at your service! 💫"
+];
+
+function getHour(){return new Date().getHours()}
+
+function updatePixieByTime(){
+  const h=getHour();
+  const gems=document.querySelectorAll('.gem');
+  const scene=document.getElementById('pixie-scene');
+  const bubble=document.getElementById('pixie-bubble');
+  const sleepBubble=document.getElementById('sleep-bubble');
+
+  if(!pixieAwake){return;} // keep sleeping state
+
+  if(h>=6&&h<12){
+    // MORNING — gems float, greeting
+    pixieState='morning';
+    scene.className='pixie-scene';
+    gems.forEach(g=>g.style.opacity='1');
+    sleepBubble.style.display='none';
+    const greeting=morningGreetings[Math.floor(Math.random()*morningGreetings.length)];
+    showPixieBubble(greeting,6000);
+  } else if(h>=22||h<6){
+    // NIGHT — sleeping
+    pixieState='sleeping';
+    pixieAwake=false;
+    gems.forEach(g=>g.style.opacity='0');
+    bubble.style.display='none';
+    sleepBubble.style.display='block';
+    scene.className='pixie-scene fairy-sleep';
+  } else {
+    // NORMAL DAY
+    pixieState='normal';
+    gems.forEach(g=>g.style.opacity='0');
+    sleepBubble.style.display='none';
+    scene.className='pixie-scene';
+  }
+}
+
+function showPixieBubble(msg,duration=4000){
+  const b=document.getElementById('pixie-bubble');
+  if(pixieBubbleTimer)clearTimeout(pixieBubbleTimer);
+  b.innerHTML=msg;
+  b.style.display='block';
+  if(duration>0){
+    pixieBubbleTimer=setTimeout(()=>{b.style.display='none';},duration);
+  }
+}
+
+function showPixieSay(msg){showPixieBubble(msg,5000);}
+
+function pixieWait(){
+  if(pixieState==='sleeping')return;
+  const scene=document.getElementById('pixie-scene');
+  const b=document.getElementById('pixie-bubble');
+  scene.className='pixie-scene fairy-wait';
+  b.innerHTML='<div class="typing-dots"><span></span><span></span><span></span></div>';
+  b.style.display='block';
+}
+
+function pixieSpeak(msg){
+  const scene=document.getElementById('pixie-scene');
+  if(pixieState!=='sleeping'){
+    scene.className='pixie-scene';
+  }
+  showPixieBubble(msg,4000);
+}
+
+function pixieChat(){
+  if(!pixieAwake){
+    // Wake up!
+    pixieAwake=true;
+    pixieState='normal';
+    const scene=document.getElementById('pixie-scene');
+    scene.className='pixie-scene';
+    document.getElementById('sleep-bubble').style.display='none';
+    addGlimmer();
+    showPixieBubble("Oh! You woke me up! 😴✨ I'm awake now, sweetie!",4000);
+    return;
+  }
+  addGlimmer();
+  const msgs=clickMsgs;
+  showPixieBubble(msgs[Math.floor(Math.random()*msgs.length)],4000);
+}
+
+function addGlimmer(){
+  const container=document.getElementById('pixie-container');
+  const g=document.createElement('div');
+  g.className='glimmer';
+  g.style.cssText=`width:${20+Math.random()*20}px;height:${20+Math.random()*20}px;top:${20+Math.random()*40}%;left:${20+Math.random()*60}%`;
+  container.appendChild(g);
+  setTimeout(()=>g.remove(),700);
+}
+
+// Click on fairy directly
+document.getElementById('pixie-scene').addEventListener('click',()=>{pixieChat();});
+
+// Time display
+function updateTime(){
+  const now=new Date();
+  const h=now.getHours(),m=now.getMinutes();
+  const ampm=h>=12?'pm':'am';
+  const h12=h%12||12;
+  const timeStr=`${h12}:${String(m).padStart(2,'0')}${ampm}`;
+  const dateStr=now.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+  document.getElementById('tb-date').textContent=dateStr;
+  const st=document.getElementById('sage-time-dash');
+  if(st)st.textContent=timeStr;
+}
+updateTime();
+setInterval(updateTime,60000);
+
+// Init Pixie
+updatePixieByTime();
+// Update state every 30 min
+setInterval(()=>{updatePixieByTime();},1800000);
+
+// Contextual Pixie messages when navigating
+const navPixie={
+  dashboard:"Let's check your numbers! 💕",
+  standup:"Time for your daily check-in! ✨",
+  kanban:"Let's crush those tasks! 🌿",
+  scheduler:"Planning is my favourite thing! 📅",
+  budget:"Let's count those coins! 💰",
+  styleguide:"Your brand is so beautiful! 🌸",
+  roadmap:"The future looks amazing! ✨"
+};
+document.querySelectorAll('.nav-item').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    const label=this.textContent.trim().toLowerCase();
+    const key=Object.keys(navPixie).find(k=>label.startsWith(k.slice(0,4)));
+    if(key&&pixieAwake&&pixieState!=='sleeping'){
+      setTimeout(()=>showPixieBubble(navPixie[key],3500),300);
+    }
+  });
+});
+</script>
+</body>
+</html>
