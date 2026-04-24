@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blessed Bites — Logo Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green-deep: #1e3a28;
+    --green-brand: #2f5c35;
+    --gold: #c9972e;
+    --gold-light: #e8c97a;
+    --cream: #fdf8f0;
+  }
+
+  body {
+    background: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .page-header {
+    background: var(--green-deep);
+    padding: 44px 60px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .page-header .eyebrow {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0.8;
+  }
+  .page-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 1px;
+  }
+  .page-header .sub {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold-light);
+    opacity: 0.65;
+    text-transform: uppercase;
+  }
+
+  /* ── Layout ── */
+  .content {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .section-label span {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--green-brand);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+
+  /* ── Three-up logo grid ── */
+  .logo-trio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .logo-card {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 32px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-card .swatch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 24px;
+    flex: 1;
+  }
+  .logo-card .swatch img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    display: block;
+  }
+
+  .swatch-white  { background: #ffffff; }
+  .swatch-light  { background: #f5ede2; }
+  .swatch-green  { background: var(--green-deep); }
+
+  .logo-card .caption {
+    padding: 14px 20px 16px;
+    background: white;
+    border-top: 1px solid #ede8e0;
+  }
+  .logo-card.dark-card .caption {
+    background: #162e1e;
+    border-top: 1px solid rgba(201,151,46,0.25);
+  }
+  .caption .ver {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--green-brand);
+    margin-bottom: 3px;
+  }
+  .dark-card .caption .ver { color: var(--gold-light); }
+  .caption .note {
+    font-size: 11px;
+    color: #999;
+    line-height: 1.6;
+  }
+  .dark-card .caption .note { color: rgba(255,255,255,0.4); }
+
+  /* ── Hero single featured ── */
+  .hero-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: stretch;
+  }
+  .hero-card {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 40px rgba(0,0,0,0.15);
+    background: var(--green-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 32px;
+  }
+  .hero-card img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    display: block;
+  }
+  .hero-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 8px 0;
+  }
+  .hero-info h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--green-deep);
+    line-height: 1.2;
+  }
+  .hero-info h2 em {
+    color: var(--gold);
+    font-style: normal;
+  }
+  .hero-info p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.8;
+    max-width: 360px;
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .tag {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 99px;
+    border: 1.5px solid;
+  }
+  .tag-green { color: var(--green-brand); border-color: var(--green-brand); }
+  .tag-gold  { color: var(--gold); border-color: var(--gold); }
+
+  /* ── Gold divider ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: -12px 0;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .divider svg { flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="eyebrow">Brand Identity</div>
+  <h1>Blessed Bites</h1>
+  <div class="sub">Official Logo — All Versions</div>
+</header>
+
+<div class="content">
+
+  <!-- Featured: Deep Green (hero) -->
+  <div>
+    <div class="section-label"><span>01 &nbsp; Signature Version — Deep Green</span></div>
+    <div class="hero-feature">
+      <div class="hero-card">
+        <img src="assets/logo-deepgreen.png" alt="Blessed Bites logo on deep green background">
+      </div>
+      <div class="hero-info">
+        <h2>The <em>Preferred</em><br>Brand Logo</h2>
+        <p>The deep green background version is the primary brand expression for Blessed Bites. It showcases the fairy at her most vibrant — gold butterflies, glowing wings, and rich contrast that commands attention across all premium contexts.</p>
+        <div class="tag-row">
+          <div class="tag tag-green">Packaging</div>
+          <div class="tag tag-green">Social Media</div>
+          <div class="tag tag-gold">Signage</div>
+          <div class="tag tag-gold">Merch</div>
+          <div class="tag tag-green">Print</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider">
+    <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 0l1.8 5.5H16l-5 3.6 1.9 5.9L8 11.4l-4.9 3.6 1.9-5.9L0 5.5h6.2z" fill="#c9972e"/></svg>
+  </div>
+
+  <!-- All three versions -->
+  <div>
+    <div class="section-label"><span>02 &nbsp; All Background Versions</span></div>
+    <div class="logo-trio">
+
+      <div class="logo-card">
+        <div class="swatch swatch-white">
+          <img src="assets/logo-transparent.png" alt="Blessed Bites logo transparent/white">
+        </div>
+        <div class="caption">
+          <div class="ver">Transparent / White</div>
+          <div class="note">For white backgrounds, digital use, web, and print documents.</div>
+        </div>
+      </div>
+
+      <div class="logo-card">
+        <div class="swatch swatch-light">
+          <img src="assets/logo-light.png" alt="Blessed Bites logo light background">
+        </div>
+        <div class="caption">
+          <div class="ver">Light / Warm Cream</div>
+          <div class="note">For warm neutral backgrounds, stationery, and light-tone designs.</div>
+        </div>
+      </div>
+
+      <div class="logo-card dark-card">
+        <div class="swatch swatch-green">
+          <img src="assets/logo-deepgreen.png" alt="Blessed Bites logo deep green background">
+        </div>
+        <div class="caption">
+          <div class="ver">Deep Green (Signature)</div>
+          <div class="note">For brand-green surfaces, packaging, and premium collateral.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider">
+    <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 0l1.8 5.5H16l-5 3.6 1.9 5.9L8 11.4l-4.9 3.6 1.9-5.9L0 5.5h6.2z" fill="#c9972e"/></svg>
+  </div>
+
+  <!-- Side by side comparison -->
+  <div>
+    <div class="section-label"><span>03 &nbsp; Light vs. Dark — Side by Side</span></div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:28px;">
+
+      <div class="logo-card">
+        <div class="swatch swatch-white" style="padding:48px 40px; min-height:340px;">
+          <img src="assets/logo-transparent.png" alt="">
+        </div>
+        <div class="caption">
+          <div class="ver">On White</div>
+          <div class="note">Clean, bright, versatile for everyday digital and print use.</div>
+        </div>
+      </div>
+
+      <div class="logo-card dark-card">
+        <div class="swatch swatch-green" style="padding:48px 40px; min-height:340px;">
+          <img src="assets/logo-deepgreen.png" alt="">
+        </div>
+        <div class="caption">
+          <div class="ver">On Deep Green</div>
+          <div class="note">Bold, premium, magical. The brand's most impactful expression.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
